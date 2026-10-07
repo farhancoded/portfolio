@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farhan Shahriar | Junior Backend Developer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* =========================
+   DARK MODE TEXT FIX
+   ========================= */
+
+    html.dark body {
+      color: #e2e8f0;
+    }
+
+    /* Main headings */
+    html.dark h1,
+    html.dark h2,
+    html.dark h3,
+    html.dark h4 {
+      color: #f8fafc !important;
+    }
+
+    /* Paragraphs */
+    html.dark p {
+      color: #cbd5e1;
+    }
+
+    /* Keep gradient/highlight text */
+    html.dark .text-indigo-400,
+    html.dark .text-indigo-300,
+    html.dark .text-purple-400,
+    html.dark .text-purple-300 {
+      color: inherit;
+    }
+
+    /* Navigation */
+    html.dark nav a {
+      color: #cbd5e1;
+    }
+
+    html.dark nav a:hover {
+      color: #818cf8;
+    }
+
+    /* Labels and small text */
+    html.dark label,
+    html.dark .text-slate-600 {
+      color: #cbd5e1 !important;
+    }
+
+    html.dark .text-slate-500 {
+      color: #94a3b8 !important;
+    }
+
+    html.dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+
+    /* Cards */
+    html.dark .glass {
+      background: rgba(15, 23, 42, 0.78);
+      border-color: rgba(148, 163, 184, 0.16);
+    }
+
+    /* Form inputs */
+    html.dark input,
+    html.dark textarea {
+      background: #111827 !important;
+      color: #f8fafc !important;
+      border-color: #334155 !important;
+    }
+
+    html.dark input::placeholder,
+    html.dark textarea::placeholder {
+      color: #64748b !important;
+    }
+
+    /* Skills cards */
+    html.dark .theme-card {
+      background: #111827 !important;
+      color: #f8fafc !important;
+    }
+
+    /* Footer */
+    html.dark footer {
+      color: #cbd5e1;
+    }
+
+    html.dark footer p,
+    html.dark footer a {
+      color: #94a3b8;
+    }
+
+    html.dark footer a:hover {
+      color: #818cf8;
+    }
+  </style>
+</head>
+
+<body id="top" class="min-h-screen bg-slate-50 dark:bg-[#080a12]">
+
+  <!-- Background -->
+  <div class="fixed inset-0 dot-bg pointer-events-none opacity-70 z-0"></div>
+  <div class="fixed -top-40 right-0 w-[520px] h-[520px] rounded-full bg-indigo-600/20 blur-3xl pointer-events-none z-0">
+  </div>
+  <div
+    class="fixed top-[45%] -left-40 w-[450px] h-[450px] rounded-full bg-purple-600/15 blur-3xl pointer-events-none z-0">
+  </div>
+
+  <!-- NAVBAR -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/70 dark:border-white/5 bg-white/80 dark:bg-[#080a12]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 h-[76px] flex items-center justify-between">
+
+      <a href="#top" class="flex items-center gap-2 group">
+        <span class="font-mono text-indigo-400 font-bold text-xl">&lt;/&gt;</span>
+        <span class="font-bold tracking-tight text-lg theme-text">
+          Farhan <span class="text-indigo-400">Shahriar</span>
+        </span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium theme-muted">
+        <a class="nav-link hover:text-indigo-400 transition-colors" href="#about">About</a>
+        <a class="nav-link hover:text-indigo-400 transition-colors" href="#skills">Skills</a>
+        <a class="nav-link hover:text-indigo-400 transition-colors" href="#projects">Projects</a>
+        <a class="nav-link hover:text-indigo-400 transition-colors" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+
+        <!-- Theme Button -->
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" type="button" aria-label="Toggle theme" class="w-10 h-10 rounded-full flex items-center justify-center
+           border border-slate-300 dark:border-white/10
+           bg-slate-100 dark:bg-white/5
+           text-slate-700 dark:text-slate-300
+           hover:text-indigo-400 transition-all">
+          <!-- Sun: visible in DARK mode -->
+          <svg id="sun-icon" class="hidden dark:block w-5 h-5 text-amber-300" fill="none" stroke="currentColor"
+            stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3
+               m15.364 6.364-.707-.707
+               M6.343 6.343l-.707-.707
+               m12.728 0 .707.707
+               M6.343 17.657l-.707.707
+               M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+
+          <!-- Moon: visible in LIGHT mode -->
+          <svg id="moon-icon" class="block dark:hidden w-5 h-5 text-indigo-600" fill="none" stroke="currentColor"
+            stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20.354 15.354A9 9 0 1 1 8.646 3.646
+               A9.003 9.003 0 0 0 20.354 15.354z" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <!-- Download CV -->
+        <a href="./assets/farhan_resume.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2
+               px-4 py-2
+               text-sm font-semibold
+               rounded-full
+               text-slate-800 dark:text-slate-200
+               hover:text-indigo-400
+               transition-all">
+          <span>Download CV</span>
+
+          <!-- Download icon BESIDE text -->
+          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+      </div>
+
+      <div id="mobile-menu" class="md:hidden border-t theme-border bg-white/95 dark:bg-[#080a12]/95 backdrop-blur-xl">
+        <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-4 text-sm font-medium theme-text">
+          <a class="mobile-link hover:text-indigo-400" href="#about">About</a>
+          <a class="mobile-link hover:text-indigo-400" href="#skills">Skills</a>
+          <a class="mobile-link hover:text-indigo-400" href="#projects">Projects</a>
+          <a class="mobile-link hover:text-indigo-400" href="#contact">Contact</a>
+          <a class="sm:hidden inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigo-600 text-white"
+            href="assets/farhan_resume.pdf" download="farhan_resume.pdf">Download CV</a>
+        </nav>
+      </div>
+  </header>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 pt-[76px]">
+
+    <!-- HERO -->
+    <main class="min-h-[calc(100vh-76px)] flex items-center py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+
+        <section class="lg:col-span-7 space-y-6">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 dark:text-indigo-300">
+            <span>👋</span>
+            <span>Hello, I'm</span>
+          </div>
+
+          <div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight theme-text leading-[1.08]">
+              Farhan <span
+                class="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-300 bg-clip-text text-transparent">Shahriar</span>
+            </h1>
+            <h2 class="text-xl sm:text-2xl font-bold theme-muted mt-4">
+              Junior Backend Developer
+            </h2>
+          </div>
+
+          <p class="text-base theme-muted leading-relaxed max-w-xl">
+            I build robust, scalable backend APIs, databases, and microservices that power high-performance digital
+            experiences. Let's build something amazing together!
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#contact"
+              class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg transition-all">
+              Hire Me →
+            </a>
+            <a href="#projects"
+              class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl glass theme-text font-semibold text-sm hover:border-indigo-400 transition-all">
+              View Projects
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 pt-3 text-sm theme-muted">
+            <span>Follow me on</span>
+            <a class="hover:text-indigo-400" href="https://github.com/farhancoded" target="_blank"
+              rel="noopener noreferrer">GitHub</a>
+            <a class="hover:text-indigo-400" href="https://www.linkedin.com/in/farhan-shahriar-39360a343"
+              target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </section>
+
+        <section class="lg:col-span-5 flex justify-center">
+          <div class="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center">
+            <div
+              class="absolute inset-5 rounded-full bg-gradient-to-tr from-indigo-700 via-indigo-600 to-purple-500 shadow-[0_0_60px_-10px_rgba(124,58,237,.7)]">
+            </div>
+            <div
+              class="relative z-10 w-72 h-72 sm:w-80 sm:h-80 overflow-hidden rounded-full border-4 border-indigo-400/30">
+              <img alt="Farhan Shahriar Portrait" class="w-full h-full object-cover object-top scale-110 translate-y-3"
+                src="assets/farhan.jpeg">
+            </div>
+
+           
+
+            
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24">
+      <div class="glass rounded-3xl p-6 sm:p-10 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-5">
+            <div class="relative rounded-2xl overflow-hidden border theme-border">
+              <img alt="Farhan Shahriar - Junior Backend Developer" class="w-full aspect-[4/5] object-cover"
+                src="assets/farhan.jpeg">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 glass px-4 py-3 rounded-xl">
+                <div class="text-xs text-indigo-400 font-mono">ROLE</div>
+                <div class="text-sm font-semibold theme-text">Junior Backend Developer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider">
+              About Me
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold theme-text leading-tight">
+              Architecting scalable, resilient
+              <span
+                class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">backend
+                systems.</span>
+            </h2>
+
+            <div class="space-y-4 theme-muted text-base sm:text-lg leading-relaxed">
+              <p>
+                I am a driven <strong class="theme-text">Junior Backend Developer</strong> dedicated to architecting
+                clean, secure, and production-ready server applications. I enjoy crafting organized RESTful APIs,
+                structuring relational databases, and fine-tuning query execution to provide seamless digital
+                experiences.
+              </p>
+              <p>
+                Guided by clean architecture paradigms and industry-standard workflows, I prioritize writing readable,
+                maintainable, and thoroughly tested code. I am eager to contribute to collaborative engineering teams
+                while continually exploring modern backend ecosystems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24">
+      <div class="mb-10">
+        <span class="text-indigo-400 text-xs font-mono uppercase tracking-widest">Technical Skills & Toolkit</span>
+        <h2 class="text-4xl sm:text-5xl font-extrabold theme-text mt-3">
+          Engineering with <span class="text-indigo-400">modern backend technologies.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🐍</div>
+          <h3 class="text-lg font-bold theme-text">Python</h3>
+          <p class="text-sm theme-muted mt-1">Backend Core</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🗄️</div>
+          <h3 class="text-lg font-bold theme-text">SQL Databases</h3>
+          <p class="text-sm theme-muted mt-1">PostgreSQL / MySQL</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">⚡</div>
+          <h3 class="text-lg font-bold theme-text">Node & Express</h3>
+          <p class="text-sm theme-muted mt-1">REST Runtime</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🚀</div>
+          <h3 class="text-lg font-bold theme-text">FastAPI</h3>
+          <p class="text-sm theme-muted mt-1">Async APIs</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🐘</div>
+          <h3 class="text-lg font-bold theme-text">PostgreSQL</h3>
+          <p class="text-sm theme-muted mt-1">Relational RDBMS</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🔀</div>
+          <h3 class="text-lg font-bold theme-text">Git & GitHub</h3>
+          <p class="text-sm theme-muted mt-1">Version Control</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🔐</div>
+          <h3 class="text-lg font-bold theme-text">Auth & Security</h3>
+          <p class="text-sm theme-muted mt-1">JWT / RBAC</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🛢️</div>
+          <h3 class="text-lg font-bold theme-text">MySQL</h3>
+          <p class="text-sm theme-muted mt-1">Queries & Indexing</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="text-3xl mb-4">🎨</div>
+          <h3 class="text-lg font-bold theme-text">Tailwind CSS</h3>
+          <p class="text-sm theme-muted mt-1">Frontend UI</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="assets/farhan_resume.pdf" download="farhan_resume.pdf"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all">
+          Download Resume ↓
+        </a>
+        <a href="#contact"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl glass theme-text font-semibold hover:border-indigo-400 transition-all">
+          Let's Connect →
+        </a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-cyan-400 text-xs font-semibold uppercase tracking-widest">Featured Backend & Full-Stack
+          Projects</span>
+        <h2 class="text-4xl sm:text-5xl font-extrabold theme-text mt-3">Recent Projects</h2>
+        <p class="theme-muted mt-4">
+          Here are some of the real-world projects I've built using modern web architectures, scalable Python FastAPI
+          services, and reactive user interfaces.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <article class="glass rounded-2xl p-6 flex flex-col">
+          <img class="w-full aspect-[16/9] object-cover rounded-xl border theme-border mb-6" alt="HouseManager Platform"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJF_X3gB5jUCmncy-PGwZH19Obqi0XqDOGqFgzXTBLnl46LrC9xOUPDG_LCapUs-UFWV-oijOBSFyP7IwesJNKVmXJXWy5EEt_Vzh9K-cruxUfoBgdSfINBxReX6uZEzgee2mQYXMIr8uNUUMad3jvs4oloXI2BZxk7KBcj0xj4E6GfUeX3bqhsfW31QGyQ6_JV_BVqJejqPBBwhAs3nKfarGoEeWz9tw1z7YsxJACOyq70DeiHsw1-w">
+          <h3 class="text-2xl font-bold theme-text">HouseManager (2025)</h3>
+          <p class="theme-muted text-sm leading-relaxed mt-3">
+            A comprehensive room booking and roommate matching platform where users can book studio rooms, lease flats,
+            and connect with verified roommates. Built with high-performance asynchronous REST endpoints, filtering, and
+            responsive state management.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">Python</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">FastAPI</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">React</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">Tailwind CSS</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">PostgreSQL</span>
+          </div>
+          <div class="flex gap-3 mt-auto pt-7">
+            <a class="flex-1 text-center py-2.5 rounded-xl bg-slate-900 dark:bg-slate-800 text-white font-semibold"
+              href="https://github.com/farhancoded/fastapi-housing" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="flex-1 text-center py-2.5 rounded-xl bg-indigo-600 text-white font-semibold" href="https://fastapi-housing-r41g.onrender.com/docs">Live
+              Demo ↗</a>
+          </div>
+        </article>
+
+        <article class="glass rounded-2xl p-6 flex flex-col">
+          <img class="w-full aspect-[16/9] object-cover rounded-xl border theme-border mb-6" alt="E-Commerce Platform"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7gGe3qI3VfNBFUn3WMib6w93nB6_8SxNk979RyKfy5w&s=10">
+          <h3 class="text-2xl font-bold theme-text">Todo app</h3>
+          <p class="theme-muted text-sm leading-relaxed mt-3">
+            A modern task management application for creating, updating, completing, and deleting daily tasks. Built
+            with React, Node.js,and Tailwind CSS with a responsive and user-friendly interface.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">Python</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">FastAPI</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">React</span>
+            <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-400">Tailwind CSS</span>
+          </div>
+          <div class="flex gap-3 mt-auto pt-7">
+            <a class="flex-1 text-center py-2.5 rounded-xl bg-slate-900 dark:bg-slate-800 text-white font-semibold"
+              href="https://github.com/farhancoded/fastapi-todoapp" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="flex-1 text-center py-2.5 rounded-xl bg-indigo-600 text-white font-semibold" href="https://fastapi-todoapp-4mbv.onrender.com/docs">Live
+              Demo ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-indigo-400 text-xs font-mono uppercase tracking-widest">Available for new opportunities</span>
+        <h2 class="text-4xl sm:text-5xl font-extrabold theme-text mt-3">
+          Contact <span class="text-indigo-400">Me</span>
+        </h2>
+        <p class="theme-muted mt-4">
+          Have a project in mind? Let's connect and discuss how I can help bring your backend ideas to life.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <h3 class="text-2xl font-bold theme-text">Get in touch today</h3>
+          <p class="theme-muted mt-3 leading-relaxed">
+            I'm always open to discussing backend architectures, modern web systems, creative ideas, or opportunities to
+            be part of your vision.
+          </p>
+
+          <div class="space-y-4 mt-8">
+            <a href="mailto:farhanshahriar500@gmail.com"
+              class="glass rounded-xl p-4 flex items-center gap-4 hover:border-indigo-400 transition-all">
+              <span class="text-2xl">✉️</span>
+              <div><span class="block text-xs theme-muted">Email</span><span
+                  class="theme-text font-medium">farhanshahriar500@gmail.com</span></div>
+            </a>
+            <a href="tel:+8801930695225"
+              class="glass rounded-xl p-4 flex items-center gap-4 hover:border-indigo-400 transition-all">
+              <span class="text-2xl">📞</span>
+              <div><span class="block text-xs theme-muted">Phone</span><span
+                  class="theme-text font-medium">+8801930695225</span></div>
+            </a>
+            <div class="glass rounded-xl p-4 flex items-center gap-4">
+              <span class="text-2xl">📍</span>
+              <div><span class="block text-xs theme-muted">Location</span><span class="theme-text font-medium">Dhaka,
+                  Bangladesh</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 glass rounded-2xl p-6 sm:p-8">
+          <form id="contact-form" class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold theme-text mb-2" for="name">Name</label>
+              <input
+                class="w-full rounded-xl px-5 py-3 text-sm bg-slate-100 dark:bg-slate-900 border theme-border theme-text outline-none focus:border-indigo-500"
+                id="name" name="name" placeholder="John Doe" required type="text">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold theme-text mb-2" for="email">Email</label>
+              <input
+                class="w-full rounded-xl px-5 py-3 text-sm bg-slate-100 dark:bg-slate-900 border theme-border theme-text outline-none focus:border-indigo-500"
+                id="email" name="email" placeholder="example@email.com" required type="email">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold theme-text mb-2" for="message">Message</label>
+              <textarea
+                class="w-full rounded-xl px-5 py-3 text-sm bg-slate-100 dark:bg-slate-900 border theme-border theme-text outline-none focus:border-indigo-500 resize-none"
+                id="message" name="message" placeholder="Tell me about your project..." required rows="5"></textarea>
+            </div>
+            <button
+              class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-500 hover:to-purple-500 transition-all"
+              type="submit">
+              Send Message →
+            </button>
+            <p id="form-message" class="hidden text-sm text-indigo-400"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer
+    class="relative z-10 border-t border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#070910]/90 backdrop-blur-xl mt-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-10">
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="#top" class="flex items-center gap-2">
+          <span class="font-mono text-indigo-400 font-bold">&lt;/&gt;</span>
+          <span class="font-bold theme-text">Farhan <span class="text-indigo-400">Shahriar</span></span>
+        </a>
+
+        <nav class="flex flex-wrap justify-center gap-6 text-sm theme-muted">
+          <a href="#top" class="hover:text-indigo-400">Home</a>
+          <a href="#about" class="hover:text-indigo-400">About</a>
+          <a href="#skills" class="hover:text-indigo-400">Skills</a>
+          <a href="#projects" class="hover:text-indigo-400">Projects</a>
+          <a href="#contact" class="hover:text-indigo-400">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="https://github.com/farhancoded" target="_blank" rel="noopener noreferrer"
+            class="text-sm theme-muted hover:text-indigo-400">GitHub</a>
+          <a href="https://www.linkedin.com/in/farhan-shahriar-39360a343" target="_blank" rel="noopener noreferrer"
+            class="text-sm theme-muted hover:text-indigo-400">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent my-7"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs theme-muted">
+        <p>© 2026 Farhan Shahriar. Junior Backend Developer. All rights reserved.</p>
+        <a href="#top" class="hover:text-indigo-400">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    (() => {
+      const html = document.documentElement;
+      const themeButton = document.getElementById("theme-toggle-btn");
+      const sunIcon = document.getElementById("sun-icon");
+      const moonIcon = document.getElementById("moon-icon");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+
+      // Apply theme safely
+      function applyTheme(theme) {
+        const isDark = theme === "dark";
+        html.classList.toggle("dark", isDark);
+
+        if (sunIcon && moonIcon) {
+          sunIcon.classList.toggle("hidden", !isDark);
+          moonIcon.classList.toggle("hidden", isDark);
+        }
+
+        localStorage.setItem("theme", theme);
+      }
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme");
+      applyTheme(savedTheme === "light" ? "light" : "dark");
+
+      // Theme button
+      themeButton?.addEventListener("click", () => {
+        const nextTheme = html.classList.contains("dark") ? "light" : "dark";
+        applyTheme(nextTheme);
+      });
+
+      // Mobile menu
+      mobileMenuBtn?.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
+
+      document.querySelectorAll(".mobile-link").forEach(link => {
+        link.addEventListener("click", () => mobileMenu.classList.remove("open"));
+      });
+
+      // Highlight current navigation section
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === "#" + entry.target.id
+              );
+            });
+          }
+        });
+      }, {
+        rootMargin: "-30% 0px -60% 0px",
+        threshold: 0
+      });
+
+      sections.forEach(section => observer.observe(section));
+
+      // Contact form: open user's email client instead of submitting to "#"
+      document.getElementById("contact-form")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const subject = encodeURIComponent("Portfolio Contact from " + name);
+        const body = encodeURIComponent(
+          "Name: " + name + "\n" +
+          "Email: " + email + "\n\n" +
+          message
+        );
+
+        window.location.href =
+          "mailto:farhanshahriar500@gmail.com?subject=" + subject + "&body=" + body;
+      });
+    })();
+  </script>
+</body>
+
+</html>
